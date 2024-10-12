@@ -106,7 +106,6 @@ router.get('/customers_data' , async(req,res)=>{
           console.error('Error reading CSV file:', error);
           res.status(500).send('Error processing CSV file'); 
         });
-        res.status(200).send(file);
      } catch (error) {
         return res.status(200).send('error in csv file => ' , error.message);
      }
