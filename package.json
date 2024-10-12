@@ -1,14 +1,15 @@
 {
-  "scripts" : {
-    "start" : "node index.js"
+  "scripts": {
+    "start": "node index.js"
   },
   "authors": "",
   "engines": {
-    "node" : "20.16.0"
+    "node": "20.16.0"
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
     "csv-parser": "^3.0.0",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "mssql": "^11.0.1"
   }
 }

@@ -97,6 +97,15 @@ router.get('/customers_data' , async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
         let response = null
         const file = path.join( __dirname , './csv_folder/customer.csv')
+        fs.createReadStream(file).pipe(csv()).on('data' , (data)=>{
+          response = data
+        }).on('end' , ()=>{
+          return res.status(200).send({"name" : response});
+        })
+        .on('error', (error) => {
+          console.error('Error reading CSV file:', error);
+          res.status(500).send('Error processing CSV file'); 
+        });
         res.status(200).send(file);
      } catch (error) {
         return res.status(200).send('error in csv file => ' , error.message);
