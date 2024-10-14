@@ -41,51 +41,38 @@ router.post('/customers_api' , async(req,res)=>{
 
       res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
 
+        const file = path.join(__dirname , './csv_folder/customer.csv');
 
-      const config = {
-        server: 'FOUAD',
-        database: 'store',
-        user: 'MSSQLSERVERYASSIN2',
-        password: 'fouad2005bx',
-        options: {
-          encrypt: true, // Enable encryption
-          trustServerCertificate: true // Disable trust server certificate
-        }
-      };
+        const headers = ['Customer_name' , 'Customer_address' , 'Customer_contact_1' , 'Customer_contact_2' , 'Customer_company_name']
+        const dataarray = req.body.map((ele)=>{
+          return [ele[8],ele[6],ele[4],ele[2],ele[0]]
+        })
 
-        //const file = path.join(__dirname , './csv_folder/customer.csv');
+          fs.stat(file, (err, stats) => {
+            if (err) {
+              console.error('Error getting file information:', err);
+            } else {
+              if (stats.isFile()) {
+                console.log('File is a regular file.');
+              } else if (stats.isDirectory()) {
+                console.log('File is a directory.');
+              } else {
+                console.log('File is of unknown type.');
+              }
+            }
+          });
 
-        // const headers = ['Customer_name' , 'Customer_address' , 'Customer_contact_1' , 'Customer_contact_2' , 'Customer_company_name']
-        // const dataarray = req.body.map((ele)=>{
-        //   return [ele[8],ele[6],ele[4],ele[2],ele[0]]
-        // })
+           const csvarray = convertArrayToCSV(dataarray,{
+            header : headers , separator : ','
+           })
 
-        //   fs.stat('./csv_folder/customer.csv', (err, stats) => {
-        //     if (err) {
-        //       console.error('Error getting file information:', err);
-        //     } else {
-        //       if (stats.isFile()) {
-        //         console.log('File is a regular file.');
-        //       } else if (stats.isDirectory()) {
-        //         console.log('File is a directory.');
-        //       } else {
-        //         console.log('File is of unknown type.');
-        //       }
-        //     }
-        //   });
-
-        //    const csvarray = convertArrayToCSV(dataarray,{
-        //     header : headers , separator : ','
-        //    })
-
-        //   fs.writeFile('./csv_folder/customer.csv', csvarray, (err) => {
-        //     if (err) {
-        //       console.error('Error writing CSV file:', err);
-        //     } else {
-        //       console.log('CSV file written successfully!');
-        //     }
-        //   });
-        res.status(200).send({message : 'تم تحديث العملاء'});
+          fs.writeFile(file, csvarray, (err) => {
+            if (err) {
+              res.status(200).send({message : 'Error in writing in CSV file'});
+            } else {
+              res.status(200).send({message : 'تم تحديث العملاء'});
+            }
+          });
         //console.log(req.body);
     } catch (error) {
         return res.status(404).send(error.message)
