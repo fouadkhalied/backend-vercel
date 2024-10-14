@@ -68,14 +68,14 @@ router.post('/customers_api' , async(req,res)=>{
 
           fs.writeFile(file, csvarray, (err) => {
             if (err) {
-              res.status(200).send({message : 'Error in writing in CSV file'});
+              res.status(200).send({message : 'Error in writing in CSV file => ' + err});
             } else {
               res.status(200).send({message : 'CSV file written succesfully'});
             }
           });
         //console.log(req.body);
     } catch (error) {
-        return res.status(404).send(error.message)
+        return res.status(200).send(error.message)
     }
 })
 
