@@ -50,7 +50,7 @@ router.post('/customers_api' , async(req,res)=>{
 
           fs.stat(file, (err, stats) => {
             if (err) {
-              console.error('Error getting file information:', err);
+              res.status(200).send({message : 'Error in opening CSV file'});
             } else {
               if (stats.isFile()) {
                 console.log('File is a regular file.');
@@ -70,7 +70,7 @@ router.post('/customers_api' , async(req,res)=>{
             if (err) {
               res.status(200).send({message : 'Error in writing in CSV file'});
             } else {
-              res.status(200).send({message : 'تم تحديث العملاء'});
+              res.status(200).send({message : 'CSV file written succesfully'});
             }
           });
         //console.log(req.body);
