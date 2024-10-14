@@ -45,7 +45,7 @@ router.post('/customers_api' , async(req,res)=>{
 
         const headers = ['Customer_name' , 'Customer_address' , 'Customer_contact_1' , 'Customer_contact_2' , 'Customer_company_name']
         const dataarray = req.body.map((ele)=>{
-            [ele[8],ele[6],ele[4],ele[2],ele[0]]
+           return [ele[8],ele[6],ele[4],ele[2],ele[0]]
         })
 
           fs.stat(file, (err, stats) => {
