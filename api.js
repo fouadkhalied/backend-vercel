@@ -87,10 +87,9 @@ router.get('/customers_data' , async(req,res)=>{
         fs.createReadStream(file).pipe(csv()).on('data' , (data)=>{
           response = data
         }).on('end' , ()=>{
-          return res.status(200).send({"name" : response});
+          return res.status(200).send({"message" : response});
         })
         .on('error', (error) => {
-          console.error('Error reading CSV file:', error);
           res.status(200).send('Error processing CSV file'); 
         });
      } catch (error) {
