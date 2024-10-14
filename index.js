@@ -5,7 +5,6 @@ const router = require('./api');
 app.use(router);
 app.use(express.json());
 
-require('./database')
 
 const port = process.env.PORT || 5000
 
