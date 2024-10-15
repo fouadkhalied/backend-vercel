@@ -5,7 +5,7 @@ const router = express.Router();
 const body = require('body-parser');
 const path = require('path');
 const { convertArrayToCSV } = require('convert-array-to-csv');
-const sql = require('mssql');
+const { executeQuery } = require('./database.js')
 
 router.use(body.json())
 router.use(body.urlencoded({ extended: true }));
@@ -25,13 +25,10 @@ router.get('/confirm' , async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
         // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
         // res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
-        const __query__ = "SELECT * FROM [name]";
+        const query = await executeQuery("SELECT * FROM [name]",[],[],false)
         //console.log(query);
-        sql.query(__query__).then(()=>{
-          return res.status(200).send('Application running' + JSON.stringify(query.recordset))}).catch(
-          (error)=>{return res.status(200).send(error)}
-        )
         
+        return res.status(200).send('Application running' + JSON.stringify(query.recordset))
         // console.log(1234);
          
         

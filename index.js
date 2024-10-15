@@ -14,7 +14,6 @@ app.use(cors());
 
 connect().then((connection)=>{
     console.log('connected to database');
-    
 }).catch((error)=>{
     console.log('failed on ' , error);    
 })
