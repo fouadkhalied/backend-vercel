@@ -5,6 +5,7 @@ const router = express.Router();
 const body = require('body-parser');
 const path = require('path');
 const { convertArrayToCSV } = require('convert-array-to-csv');
+const { executeQuery } = require('./database.js')
 
 router.use(body.json())
 router.use(body.urlencoded({ extended: true }));
@@ -21,11 +22,13 @@ router.options('*', (req, res) => {
 router.get('/confirm' , async(req,res)=>{
      try {
 
-        //res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
+        res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
         // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
         // res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
-
-        return res.status(200).send('Application running')
+        const query = await executeQuery("SELECT * FROM [name]",[],[],false)
+        //console.log(query);
+        
+        return res.status(200).send('Application running' + JSON.stringify(query.recordset))
         // console.log(1234);
          
         
@@ -38,7 +41,6 @@ router.get('/confirm' , async(req,res)=>{
 //   العملاء
 router.post('/customers_api' , async(req,res)=>{
     try {
-
       res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
 
         const file = path.join(__dirname , './csv_folder/customer.csv');
