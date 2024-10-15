@@ -30,6 +30,11 @@ const config = {
     },
     port : parseInt(process.env.PORT_OF_SQL_SERVER)
 };  
+console.log(process.env.MYSERVER);
+console.log(process.env.USERNAME_OF_SQL_SERVER);
+console.log(process.env.PASSWORD);
+console.log(process.env.PORT_OF_SQL_SERVER);
+console.log(process.env.DATABASE);
 
 // Normal queries to db handled here
 async function executeQuery(query, values = [], paramNames = [], isStoredProcedure = true, outputParamName = null) {
