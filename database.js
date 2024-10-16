@@ -13,29 +13,44 @@ require('dotenv').config();
 //     port : 1433
 // };
 
-const config = {  
+// const config = {  
 
-    server: process.env.MYSERVER,  
-        authentication: {
-        type: 'default',
-        options: {
-            userName: process.env.USERNAME_OF_SQL_SERVER, 
-            password: process.env.PASSWORD  
-        }
-    },
+//     server: process.env.MYSERVER,  
+//         authentication: {
+//         type: 'default',
+//         options: {
+//             userName: process.env.USERNAME_OF_SQL_SERVER, 
+//             password: process.env.PASSWORD  
+//         }
+//     },
+//     options: {
+//         // If you are on Microsoft Azure, you need encryption:
+//         enableArithAbort : true ,
+//         trustServerCertificate: true,
+//         database: process.env.DATABASE
+//     },
+//     //port : parseInt(process.env.PORT_OF_SQL_SERVER)
+// };  
+// console.log(process.env.MYSERVER);
+// console.log(process.env.USERNAME_OF_SQL_SERVER);
+// console.log(process.env.PASSWORD);
+// console.log(process.env.PORT_OF_SQL_SERVER);
+// console.log(process.env.DATABASE);
+
+
+const config = {
+    user: 'MSSQLSERVERYASSIN',
+    password: '12345!Aa',
+    server: 'fouadsql.database.windows.net',
+    database: 'store',
     options: {
-        // If you are on Microsoft Azure, you need encryption:
-        enableArithAbort : true ,
-        trustServerCertificate: true,
-        database: process.env.DATABASE
-    },
-    port : parseInt(process.env.PORT_OF_SQL_SERVER)
-};  
-console.log(process.env.MYSERVER);
-console.log(process.env.USERNAME_OF_SQL_SERVER);
-console.log(process.env.PASSWORD);
-console.log(process.env.PORT_OF_SQL_SERVER);
-console.log(process.env.DATABASE);
+        encrypt: true,
+        trustServerCertificate: false,
+        enableArithAbort: true,
+        packetSize: 4096
+    }
+};
+
 
 // Normal queries to db handled here
 async function executeQuery(query, values = [], paramNames = [], isStoredProcedure = true, outputParamName = null) {

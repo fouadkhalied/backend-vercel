@@ -25,7 +25,7 @@ router.get('/confirm' , async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
         // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
         // res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
-        const query = await executeQuery("SELECT * FROM [name]",[],[],false)
+        const query = await executeQuery("SELECT Top(1) * FROM [name]",[],[],false)
         //console.log(query);
         
         return res.status(200).send('Application running' + JSON.stringify(query.recordset))
