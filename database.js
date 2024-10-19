@@ -13,24 +13,24 @@ require('dotenv').config();
 //     port : 1433
 // };
 
-// const config = {  
+const config = {  
 
-//     server: process.env.MYSERVER,  
-//         authentication: {
-//         type: 'default',
-//         options: {
-//             userName: process.env.USERNAME_OF_SQL_SERVER, 
-//             password: process.env.PASSWORD  
-//         }
-//     },
-//     options: {
-//         // If you are on Microsoft Azure, you need encryption:
-//         enableArithAbort : true ,
-//         trustServerCertificate: true,
-//         database: process.env.DATABASE
-//     },
-//     //port : parseInt(process.env.PORT_OF_SQL_SERVER)
-// };  
+    server: process.env.MYSERVER,  
+        authentication: {
+        type: 'default',
+        options: {
+            userName: process.env.USERNAME_OF_SQL_SERVER, 
+            password: process.env.PASSWORD  
+        }
+    },
+    options: {
+        // If you are on Microsoft Azure, you need encryption:
+        enableArithAbort : true ,
+        trustServerCertificate: true,
+        database: process.env.DATABASE
+    },
+    port : parseInt(process.env.PORT_OF_SQL_SERVER)
+};  
 // console.log(process.env.MYSERVER);
 // console.log(process.env.USERNAME_OF_SQL_SERVER);
 // console.log(process.env.PASSWORD);
@@ -38,18 +38,18 @@ require('dotenv').config();
 // console.log(process.env.DATABASE);
 
 
-const config = {
-    user: 'MSSQLSERVERYASSIN',
-    password: '12345!Aa',
-    server: 'fouadsql.database.windows.net',
-    database: 'store',
-    options: {
-        encrypt: true,
-        trustServerCertificate: false,
-        enableArithAbort: true,
-        packetSize: 4096
-    }
-};
+// const config = {
+//     user: 'MSSQLSERVERYASSIN',
+//     password: '12345!Aa',
+//     server: 'fouadsql.database.windows.net',
+//     database: 'store',
+//     options: {
+//         encrypt: true,
+//         trustServerCertificate: false,
+//         enableArithAbort: true,
+//         packetSize: 4096
+//     }
+// };
 
 
 // Normal queries to db handled here
