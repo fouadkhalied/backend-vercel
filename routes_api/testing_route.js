@@ -7,7 +7,7 @@ test_router.use(body.urlencoded({ extended: true }));
 
 test_router.options('*', (req, res) => {
   res.set({
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'Access-Control-Allow-Origin': 'https://to-do-list-react-app-pink.vercel.app',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   });
