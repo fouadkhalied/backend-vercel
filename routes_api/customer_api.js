@@ -8,7 +8,7 @@ customer_router.use(body.urlencoded({ extended: true }));
 
 customer_router.options('*', (req, res) => {
   res.set({
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'Access-Control-Allow-Origin': 'https://to-do-list-react-app-pink.vercel.app',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   });
@@ -17,7 +17,7 @@ customer_router.options('*', (req, res) => {
 
 customer_router.post('/customers_api' , async(req,res)=>{
     try {
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); 
+      res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
 
       const truncate = "TRUNCATE TABLE Customers";
 
@@ -49,7 +49,7 @@ customer_router.post('/customers_api' , async(req,res)=>{
 
 customer_router.get('/customers_data' , async(req,res)=>{
      try {
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); 
+      res.setHeader('Access-Control-Allow-Origin', 'https://to-do-list-react-app-pink.vercel.app'); 
 
         const query = await executeQuery("SELECT * FROM Customers" , [] , [] , false);
 
